@@ -5,8 +5,8 @@ const isPublicRoute = createRouteMatcher(["/", "/sign-in", "/sign-up", "/home"])
 
 const isPublicAPIRoute = createRouteMatcher(["/api/videos"])
 
-export default clerkMiddleware((auth, req) => {
-  const { userId } = auth()
+export default clerkMiddleware(async (auth, req) => {
+  const { userId } = await auth()
   const currentUrl = new URL(req.url)
   const isAccesingDashBoard = currentUrl.pathname === "/home"
   const isApiRequest = currentUrl.pathname.startsWith("/api")
