@@ -12,6 +12,7 @@
     "@clerk/nextjs": "^6.35.5",
     "@prisma/adapter-pg": "^7.0.1",
     "@prisma/client": "^7.0.1",
+    "cloudinary": "^2.8.0",
     "dotenv": "^17.2.3",
     "next": "16.0.4",
     "pg": "^8.16.3",
@@ -28,7 +29,7 @@
     "daisyui": "^5.5.5",
     "eslint": "^9",
     "eslint-config-next": "16.0.4",
-    "prisma": "^7.0.1",
+    "prisma": "^6.19.0",
     "tailwindcss": "^4.1.17",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3"
