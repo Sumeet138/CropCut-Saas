@@ -13,6 +13,7 @@ datasource db {
   provider = "postgresql"
 }
 
+//Models 
 model Video{
   id String @id @default(cuid())
   title String
@@ -20,7 +21,7 @@ model Video{
   publicID String 
   originalSize String
   compressedSize String
-  duration String
+  duration Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
