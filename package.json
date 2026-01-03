@@ -15,6 +15,7 @@
     "cloudinary": "^2.8.0",
     "dotenv": "^17.2.3",
     "next": "16.0.4",
+    "next-cloudinary": "^6.17.5",
     "pg": "^8.16.3",
     "postcss": "^8.5.6",
     "react": "19.2.0",
