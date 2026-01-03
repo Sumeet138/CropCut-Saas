@@ -1,4 +1,4 @@
-"use clinet"
+"use client"
 import React, { useRef, useEffect, useState } from "react"
 import { CldImage } from "next-cloudinary"
 
