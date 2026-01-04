@@ -8,11 +8,11 @@ const isPublicAPIRoute = createRouteMatcher(["/api/videos"])
 export default clerkMiddleware(async (auth, req) => {
   const { userId } = await auth()
   const currentUrl = new URL(req.url)
-  const isAccesingDashBoard = currentUrl.pathname === "/home"
+  const isAccessingAuth = currentUrl.pathname === "/sign-in" || currentUrl.pathname === "/sign-up"
   const isApiRequest = currentUrl.pathname.startsWith("/api")
 
-  //for Loged in user
-  if (userId && isPublicRoute(req) && !isAccesingDashBoard) {
+  // Logged in user trying to access sign-in/sign-up pages -> redirect to home
+  if (userId && isAccessingAuth) {
     return NextResponse.redirect(new URL("/home", req.url))
   }
 
@@ -33,7 +33,7 @@ export default clerkMiddleware(async (auth, req) => {
 
 export const config = {
   matcher: [
-    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|mp4|webm|ogg|mov|avi)).*)",
     "/(api|trpc)(.*)",
   ],
 }

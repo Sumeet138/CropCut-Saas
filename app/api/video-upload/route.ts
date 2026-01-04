@@ -1,9 +1,12 @@
 import { NextResponse, NextRequest } from "next/server"
 import { v2 as cloudinary } from "cloudinary"
 import { auth } from "@clerk/nextjs/server"
-import { PrismaClient } from "@/app/generated/prisma"
+import { PrismaClient } from "@/app/generated/prisma/client"
+import { PrismaPg } from "@prisma/adapter-pg"
 
-const prisma = new PrismaClient()
+const connectionString = `${process.env.DATABASE_URL}`
+const adapter = new PrismaPg({ connectionString })
+const prisma = new PrismaClient({ adapter })
 
 // Configuration
 cloudinary.config({
@@ -14,7 +17,9 @@ cloudinary.config({
 
 interface CloudinaryUploaderResult {
   public_id: string
-  [key: string]: any
+  bytes?: number
+  duration?: number
+  [key: string]: unknown
 }
 
 export async function POST(request: NextRequest) {
