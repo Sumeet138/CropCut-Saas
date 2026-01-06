@@ -3,6 +3,7 @@ import { v2 as cloudinary } from "cloudinary"
 import { auth } from "@clerk/nextjs/server"
 import { PrismaClient } from "@/app/generated/prisma/client"
 import { PrismaPg } from "@prisma/adapter-pg"
+import { getCompressionSettings } from "@/lib/cloudinary-config"
 
 const connectionString = `${process.env.DATABASE_URL}`
 const adapter = new PrismaPg({ connectionString })
@@ -60,7 +61,7 @@ export async function POST(request: NextRequest) {
           {
             resource_type: "video",
             folder: "video-uploads",
-            transformation: [{ quality: "auto", fetch_format: "mp4" }],
+            transformation: [getCompressionSettings("balanced")], // 40-60% compression
           },
           (error, result) => {
             if (error) reject(error)
